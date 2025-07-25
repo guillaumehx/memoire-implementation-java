@@ -1,9 +1,9 @@
 package be.guho.parser;
 
-
 import be.guho.tree.BinaryOperationNode;
 import be.guho.tree.ExpressionNode;
 import be.guho.tree.NumberNode;
+import be.guho.tree.UnaryOperationNode;
 
 import java.util.List;
 import java.util.Stack;
@@ -11,7 +11,6 @@ import java.util.Stack;
 public class ExpressionParser {
 
     public ExpressionNode parse(String expression) {
-
         List<Object> outputQueue = ShuntingYard.infixToRPN(expression);
         Stack<ExpressionNode> stack = new Stack<>();
 
@@ -19,9 +18,14 @@ public class ExpressionParser {
             if (item instanceof Integer) {
                 stack.push(new NumberNode((Integer) item));
             } else if (item instanceof String op) {
-                ExpressionNode right = stack.pop();
-                ExpressionNode left = stack.pop();
-                stack.push(new BinaryOperationNode(op, left, right));
+                if (op.equals("sqrt")) {
+                    ExpressionNode operand = stack.pop();
+                    stack.push(new UnaryOperationNode(op, operand));
+                } else {
+                    ExpressionNode right = stack.pop();
+                    ExpressionNode left = stack.pop();
+                    stack.push(new BinaryOperationNode(op, left, right));
+                }
             }
         }
 
@@ -31,5 +35,4 @@ public class ExpressionParser {
 
         return stack.pop();
     }
-
 }
