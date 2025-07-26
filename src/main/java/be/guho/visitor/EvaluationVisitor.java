@@ -30,6 +30,8 @@ public class EvaluationVisitor implements NodeVisitor {
         double operand = node.getOperand().accept(this);
         if ("sqrt".equals(node.getOperator())) {
             return Math.sqrt(operand);
+        } else if ("neg".equals(node.getOperator())) {
+            return -operand;
         } else {
             throw new IllegalArgumentException("Bad input : " + node.getOperator());
         }

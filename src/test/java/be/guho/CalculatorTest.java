@@ -105,4 +105,50 @@ public class CalculatorTest {
         Assert.assertEquals(85849, ouput, 0);
     }
 
+    @Test
+    public void testSimpleSquareRoot() {
+        String input9 = "sqrt(9)";
+        double output9 = calculator.compute(input9);
+        Assert.assertEquals(3.0, output9, 0);
+
+        String input4 = "sqrt(4)";
+        double output4 = calculator.compute(input4);
+        Assert.assertEquals(2.0, output4, 0);
+    }
+
+    @Test
+    public void testComplexSquareRoot() {
+        String input = "sqrt(12996)";
+        double output = calculator.compute(input);
+        Assert.assertEquals(114.0, output, 0);
+    }
+
+    @Test
+    public void testNegativeUnary1() {
+        String input = "-3";
+        double output = calculator.compute(input);
+        Assert.assertEquals(-3, output, 0);
+    }
+
+    @Test
+    public void testNegativeUnary2() {
+        String input = "-3 + (-2) + 10";
+        double output = calculator.compute(input);
+        Assert.assertEquals(5, output, 0);
+    }
+
+    @Test
+    public void testSquareRoot() {
+        String input = "(((sqrt(12996) + sqrt(9) - sqrt(4)) * sqrt(16)) / sqrt(25)) + 1";
+        double output = calculator.compute(input);
+        Assert.assertEquals(93.0, output, 0);
+    }
+
+    @Test
+    public void testComplexExpression() {
+        String input = "(((sqrt(5^2 + 4*sqrt(3))) / (sqrt(2^3 + 1) + 3))^2 + (7 / sqrt(9 + 2^2))) * (sqrt(16) - (2^3 / sqrt(2)))";
+        double output = calculator.compute(input);
+        Assert.assertEquals(-4.686, output, 3);
+    }
+
 }
