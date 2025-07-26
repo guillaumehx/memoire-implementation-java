@@ -128,7 +128,13 @@ public class CalculatorTest {
         String input = "(((sqrt(12996) + sqrt(9) - sqrt(4)) * sqrt(16)) / sqrt(25)) + 1";
         double output = calculator.compute(input);
         Assert.assertEquals(93.0, output, 0);
+    }
 
+    @Test
+    public void testComplexExpression() {
+        String input = "(((sqrt(5^2 + 4*sqrt(3))) / (sqrt(2^3 + 1) + 3))^2 + (7 / sqrt(9 + 2^2))) * (sqrt(16) - (2^3 / sqrt(2)))";
+        double output = calculator.compute(input);
+        Assert.assertEquals(-4.686, output, 3);
     }
 
 }
