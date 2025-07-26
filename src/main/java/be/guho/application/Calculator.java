@@ -1,7 +1,7 @@
 package be.guho.application;
 
-import be.guho.tree.ExpressionNode;
 import be.guho.parser.ExpressionParser;
+import be.guho.tree.ExpressionNode;
 import be.guho.visitor.EvaluationVisitor;
 
 public class Calculator implements HistoryMixin {
