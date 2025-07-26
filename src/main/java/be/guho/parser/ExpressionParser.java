@@ -18,7 +18,7 @@ public class ExpressionParser {
             if (item instanceof Integer) {
                 stack.push(new NumberNode((Integer) item));
             } else if (item instanceof String op) {
-                if (op.equals("sqrt")) {
+                if (op.equals("sqrt") || op.equals("neg")) {
                     ExpressionNode operand = stack.pop();
                     stack.push(new UnaryOperationNode(op, operand));
                 } else {

@@ -113,6 +113,20 @@ public class ShuntingYardTest {
         String output = convertListToString(ShuntingYard.infixToRPN(input));
         Assert.assertEquals("12996 sqrt 9 sqrt + 4 sqrt - 16 sqrt * 25 sqrt / 1 +", output);
     }
+
+    @Test
+    public void test13() {
+        String input = "-3";
+        String output = convertListToString(ShuntingYard.infixToRPN(input));
+        Assert.assertEquals("3 neg", output);
+    }
+
+    @Test
+    public void test14() {
+        String input = "-3-4";
+        String output = convertListToString(ShuntingYard.infixToRPN(input));
+        Assert.assertEquals("3 neg 4 -", output);
+    }
     
     private String convertListToString(final List<Object> input) {
         return input.stream().map(Object::toString).collect(Collectors.joining(" "));

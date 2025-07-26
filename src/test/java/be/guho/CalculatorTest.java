@@ -124,6 +124,20 @@ public class CalculatorTest {
     }
 
     @Test
+    public void testNegativeUnary1() {
+        String input = "-3";
+        double output = calculator.compute(input);
+        Assert.assertEquals(-3, output, 0);
+    }
+
+    @Test
+    public void testNegativeUnary2() {
+        String input = "-3 + (-2) + 10";
+        double output = calculator.compute(input);
+        Assert.assertEquals(5, output, 0);
+    }
+
+    @Test
     public void testSquareRoot() {
         String input = "(((sqrt(12996) + sqrt(9) - sqrt(4)) * sqrt(16)) / sqrt(25)) + 1";
         double output = calculator.compute(input);
